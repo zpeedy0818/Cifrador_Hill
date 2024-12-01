@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado de Hill</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Cifrado de Hill</h1>
+            <p>Encripta y desencripta mensajes usando álgebra lineal</p>
+        </header>
+
+        <div class="main-content">
+            <div class="matrix-section">
+                <h2>Matriz Clave</h2>
+                <div class="input-group">
+                    <label for="keyMatrix">Matriz (formato: a,b;c,d para 2x2):</label>
+                    <input type="text" id="keyMatrix" placeholder="3,3;2,5" value="3,3;2,5">
+                    <button onclick="validateMatrix()">Validar Matriz</button>
+                </div>
+                <div id="matrixValidation"></div>
+            </div>
+
+            <div class="encryption-section">
+                <h2>Encriptar</h2>
+                <div class="input-group">
+                    <label for="plaintext">Texto a encriptar:</label>
+                    <textarea id="plaintext" placeholder="Ingresa el texto aquí...">HELLO</textarea>
+                </div>
+                <button onclick="encrypt()" class="btn-encrypt">Encriptar</button>
+                <div class="result" id="encryptionResult"></div>
+            </div>
+
+            <div class="decryption-section">
+                <h2>Desencriptar</h2>
+                <div class="input-group">
+                    <label for="ciphertext">Texto a desencriptar:</label>
+                    <textarea id="ciphertext" placeholder="Ingresa el texto cifrado aquí..."></textarea>
+                </div>
+                <button onclick="decrypt()" class="btn-decrypt">Desencriptar</button>
+                <div class="result" id="decryptionResult"></div>
+            </div>
+
+            <div class="examples-section">
+                <h2>Matrices de Ejemplo</h2>
+                <div class="examples">
+                    <button onclick="loadExample('2x2_1')">2x2: 3,3;2,5</button>
+                    <button onclick="loadExample('2x2_2')">2x2: 6,24;1,13</button>
+                    <button onclick="loadExample('3x3_1')">3x3: 17,17,5;21,18,21;2,2,19</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
