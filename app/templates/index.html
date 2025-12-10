@@ -4,57 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cifrado de Hill</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v={{ static_version }}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🔐 Cifrado de Hill</h1>
-            <p>Encripta y desencripta mensajes usando álgebra lineal</p>
+            <h1>Hill Cipher</h1>
+            <p>Encriptación mediante álgebra lineal</p>
         </header>
 
         <div class="main-content">
-            <div class="matrix-section">
-                <h2>Matriz Clave</h2>
+            <!-- Sección de Matriz Clave -->
+            <div class="card matrix-section">
+                <div class="card-header">
+                    <h2>Matriz Clave</h2>
+                </div>
+                
                 <div class="input-group">
-                    <label for="keyMatrix">Matriz (formato: a,b;c,d para 2x2):</label>
-                    <input type="text" id="keyMatrix" placeholder="3,3;2,5" value="3,3;2,5">
-                    <button onclick="validateMatrix()">Validar Matriz</button>
+                    <label>Selecciona el tamaño:</label>
+                    <div class="size-selector">
+                        <button class="size-btn" onclick="setMatrixSize(2)" id="btn-2x2">2×2</button>
+                        <button class="size-btn" onclick="setMatrixSize(3)" id="btn-3x3">3×3</button>
+                        <button class="size-btn" onclick="setMatrixSize(4)" id="btn-4x4">4×4</button>
+                    </div>
+                </div>
+
+                <div class="matrix-grid-container">
+                    <div id="matrixGrid" class="matrix-grid"></div>
+                </div>
+
+                <div class="button-group">
+                    <button onclick="validateMatrix()" class="btn-primary">Validar Matriz</button>
                 </div>
                 <div id="matrixValidation"></div>
             </div>
 
-            <div class="encryption-section">
-                <h2>Encriptar</h2>
-                <div class="input-group">
-                    <label for="plaintext">Texto a encriptar:</label>
-                    <textarea id="plaintext" placeholder="Ingresa el texto aquí...">HELLO</textarea>
+            <div class="content-grid">
+                <!-- Sección de Encriptación -->
+                <div class="card encryption-section">
+                    <div class="card-header">
+                        <h2>Encriptar</h2>
+                    </div>
+                    <div class="input-group">
+                        <label for="plaintext">Texto:</label>
+                        <textarea id="plaintext" placeholder="Ingresa el mensaje...">HELLO</textarea>
+                    </div>
+                    <button onclick="encrypt()" class="btn-encrypt">Encriptar</button>
+                    <div class="result" id="encryptionResult"></div>
                 </div>
-                <button onclick="encrypt()" class="btn-encrypt">Encriptar</button>
-                <div class="result" id="encryptionResult"></div>
+
+                <!-- Sección de Desencriptación -->
+                <div class="card decryption-section">
+                    <div class="card-header">
+                        <h2>Desencriptar</h2>
+                    </div>
+                    <div class="input-group">
+                        <label for="ciphertext">Texto cifrado:</label>
+                        <textarea id="ciphertext" placeholder="Ingresa el mensaje cifrado..."></textarea>
+                    </div>
+                    <button onclick="decrypt()" class="btn-decrypt">Desencriptar</button>
+                    <div class="result" id="decryptionResult"></div>
+                </div>
             </div>
 
-            <div class="decryption-section">
-                <h2>Desencriptar</h2>
-                <div class="input-group">
-                    <label for="ciphertext">Texto a desencriptar:</label>
-                    <textarea id="ciphertext" placeholder="Ingresa el texto cifrado aquí..."></textarea>
+            <!-- Ejemplos -->
+            <div class="card examples-section">
+                <div class="card-header">
+                    <h2>Matrices de Ejemplo</h2>
                 </div>
-                <button onclick="decrypt()" class="btn-decrypt">Desencriptar</button>
-                <div class="result" id="decryptionResult"></div>
-            </div>
-
-            <div class="examples-section">
-                <h2>Matrices de Ejemplo</h2>
                 <div class="examples">
-                    <button onclick="loadExample('2x2_1')">2x2: 3,3;2,5</button>
-                    <button onclick="loadExample('2x2_2')">2x2: 6,24;1,13</button>
-                    <button onclick="loadExample('3x3_1')">3x3: 17,17,5;21,18,21;2,2,19</button>
+                    <button onclick="loadExample('2x2_1')">2×2: [[3,3],[2,5]]</button>
+                    <button onclick="loadExample('2x2_2')">2×2: [[6,24],[1,13]]</button>
+                    <button onclick="loadExample('3x3_1')">3×3: [[17,17,5],[21,18,21],[2,2,19]]</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="/static/script.js"></script>
+    <script src="/static/script.js?v={{ static_version }}"></script>
 </body>
 </html>
